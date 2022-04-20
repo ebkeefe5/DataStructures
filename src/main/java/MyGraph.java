@@ -1,10 +1,4 @@
-package src.main.java;
-
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 class MyGraph<T extends Comparable<T>>
 {
@@ -17,31 +11,67 @@ class MyGraph<T extends Comparable<T>>
     this.adjacent = new HashMap<>();
   }
 
-  public void addVertex(T node)
-  {
-    this.adjacent.put(node, new ArrayList<>());
-    this.numberOfNodes++;
-  }
-
   public void addEdge(T node1, T node2)
   {
-    this.adjacent.get(node1).add(node2);
-    this.adjacent.get(node2).add(node1);
-  }  
+    if (this.adjacent.get(node1) == null)
+      this.adjacent.put(node1, new ArrayList<>(Arrays.asList(node2)));
+    else
+      this.adjacent.get(node1).add(node2);
+    if (this.adjacent.get(node2) == null)
+      this.adjacent.put(node2, new ArrayList<>(Arrays.asList(node1)));
+    else
+      this.adjacent.get(node2).add(node1);
+  }
 
-  private void DFS(T node, Set<T> seen)
+  T DFS(T currNode, T targetNode)
   {
-    List<T> adjacentNodes = adjacent.get(node);
+    return DFS(currNode, targetNode, new HashSet<T>());
+  }
+
+  private T DFS(T currNode, T targetNode, Set<T> seen)
+  {
+    if (currNode == null)
+      return null;
+    if (currNode.equals(targetNode))
+      return currNode;
+    seen.add(currNode);
+    List<T> adjacentNodes = adjacent.get(currNode);
     if (adjacentNodes == null)
       adjacentNodes = new ArrayList<>();
     for (T adjNode: adjacentNodes)
     {
       if (!seen.contains(adjNode))
       {
-        seen.add(adjNode);
-        DFS(adjNode, seen);
+        return DFS(adjNode, targetNode, seen);
       }
     }   
-    System.out.println(node);
+    return null;
+  }
+
+  T BFS(T currNode, T targetNode)
+  {
+    return BFS(currNode, targetNode, new HashSet<T>());
+  }
+
+  //more common BFS implementation using Queue
+  private T BFS(T startNode, T targetNode, Set<T> seen)
+  {
+    if (startNode == null)
+      return null;
+    Queue<T> toTraverse = new LinkedList<>();
+    toTraverse.add(startNode);
+    while(!toTraverse.isEmpty())
+    {
+      T curr = toTraverse.poll();
+      if (seen.contains(curr))
+        continue;
+      if (curr.equals(targetNode))
+        return curr;
+      seen.add(curr);
+      List<T> adjacentNodes = adjacent.get(curr);
+      if (adjacentNodes != null)
+        toTraverse.addAll(adjacentNodes);
+    }
+    return null;
   }
 }

@@ -1,4 +1,4 @@
-package src.main.java;//really similar to singularly linked lists
+//really similar to singularly linked lists
 //just requires a little extra memory and complexity to implement
 //makes it faster to insert and delete if we are doing it towards
 //the end because we can loop backwards
@@ -71,7 +71,7 @@ class DoubleLinkedListIml<T>
   {
     if (this.length == 0)
     {
-      //log some sort of warning or throw an exception
+      //log exception
       return;
     }
     //special case for size 1 where we remove the first element
@@ -82,6 +82,7 @@ class DoubleLinkedListIml<T>
       length--;
       return;
     }
+
     //removing at or past the last element in the linked list
     //ie a -> b -> c removing at index 2
     else if (index >= this.length-1 )

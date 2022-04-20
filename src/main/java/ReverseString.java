@@ -1,9 +1,5 @@
-package src.main.java;
-
 class ReverseString
 {
-  
-  
   public ReverseString()
   {
     

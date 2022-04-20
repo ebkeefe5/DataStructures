@@ -1,12 +1,14 @@
-package src.main.java;//Given a number n return the index of the Fibonacci
-//sequence where the number is
-
-//0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...
-//the pattern of the sequence is that each number
-//is the sum of the two previous numbers
-
 import java.util.Map;
 import java.util.HashMap;
+
+/*
+Given an index n return the Fibonacci number
+at that index in the sequence
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...
+the pattern of the sequence is that each number
+is the sum of the two previous numbers
+*/
 
 class Fibonacci
 {
@@ -15,7 +17,7 @@ class Fibonacci
   
   public Fibonacci(){};
   
-  public int fibRec(int index) //O(2^n)
+  public int memoizedRecursivefibRec(int index) //O(2^n)
   {
     Integer val = cache.get(index);
     if (val != null)
@@ -26,11 +28,11 @@ class Fibonacci
       return index;
     }
     
-    cache.put(index, fibRec(index - 1) + fibRec(index - 2));
+    cache.put(index, memoizedRecursivefibRec(index - 1) + memoizedRecursivefibRec(index - 2));
     return cache.get(index);
   } 
 
-  public int fibLoop(int index) //O(n)
+  public int iterativeFib(int index) //O(n)
   {
     //index 2 -> 1
     //index 3 -> 2

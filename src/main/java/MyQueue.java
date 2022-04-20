@@ -1,4 +1,4 @@
-package src.main.java;//first in, first out
+//first in, first out
 //the first person in, get's to be the first person out
 //visualize like a line
 //lookup O(n) shouldn't really be used

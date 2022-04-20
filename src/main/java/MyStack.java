@@ -1,4 +1,4 @@
-package src.main.java;//first in, last out
+//first in, last out
 //plates stacked on top of each other
 //lookup O(n) shouldn't be used
 //pop O(1) take out the last item
