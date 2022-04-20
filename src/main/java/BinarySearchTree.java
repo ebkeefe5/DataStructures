@@ -1,17 +1,20 @@
-package src.main.java;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.LinkedList;
 
-class BinarySearchTree<T extends Comparable<T>>
+public class BinarySearchTree<T extends Comparable<T>>
 {
     private TreeNode<T> root;
   
     public BinarySearchTree()
     {
       this.root = null;
+    }
+
+    public TreeNode<T> getRoot()
+    {
+      return this.root;
     }
 
     public void insert(T value)
@@ -65,98 +68,83 @@ class BinarySearchTree<T extends Comparable<T>>
       return false;
     }
 
-  public void printInOrder()
-  {
-    System.out.println(inOrderTraversal(root, new ArrayList<>()));  
-  }
-
-  private List<T> inOrderTraversal(TreeNode<T> node, List<T> list)
-  {
-    if (node.left != null)
+    public void printInOrder()
     {
-      inOrderTraversal(node.left, list);
+      System.out.println(inOrderTraversal(root, new ArrayList<>()));
     }
-    list.add(node.value);
-    if (node.right != null)
+
+    List<T> inOrderTraversal(TreeNode<T> node, List<T> list)
     {
-      inOrderTraversal(node.right, list);
+      if (node.left != null)
+      {
+        inOrderTraversal(node.left, list);
+      }
+      list.add(node.value);
+      if (node.right != null)
+      {
+        inOrderTraversal(node.right, list);
+      }
+      return list;
     }
-    return list;
-  }
 
-  public void printPreOrder() //root, left, right
-  {
-    System.out.println(preOrderTraversal(root, new ArrayList<>()));
-  }
-
-   private List<T> preOrderTraversal(TreeNode<T> node, List<T> list)
-  {
-    list.add(node.value);
-    if (node.left != null)
+    public void printPreOrder() //root, left, right
     {
-      preOrderTraversal(node.left, list);
+      System.out.println(preOrderTraversal(root, new ArrayList<>()));
     }
-    if (node.right != null)
+
+     List<T> preOrderTraversal(TreeNode<T> node, List<T> list)
     {
-      preOrderTraversal(node.right, list);
+      list.add(node.value);
+      if (node.left != null)
+      {
+        preOrderTraversal(node.left, list);
+      }
+      if (node.right != null)
+      {
+        preOrderTraversal(node.right, list);
+      }
+      return list;
     }
-    return list;
-  }
 
-  public void printPostOrder()
-  {
-    System.out.println(traversePostOrder(root, new ArrayList<>()));
-  }
-
-  private List<T> traversePostOrder(TreeNode<T> node, List<T> list)
-  {
-    if (node.left != null)
-      traversePostOrder(node.left, list);
-    if (node.right != null)
-      traversePostOrder(node.right, list);
-    list.add(node.value);
-    return list;
-  }
-
-  public void printLevelOrder()
-  {
-    System.out.println(traverseLevelOrder());
-  }
-
-  //level order traversal
-  private List<T> traverseLevelOrder()
-  {
-    Queue<TreeNode<T>> traverse = new LinkedList<>();
-    List<T> answer = new ArrayList<>();
-    traverse.add(root);
-    while(!traverse.isEmpty())
+    public void printPostOrder()
     {
-      TreeNode<T> curr = traverse.remove();
-      answer.add(curr.value);
-      if (curr.left != null)
-        traverse.add(curr.left);
-      if (curr.right != null)
-        traverse.add(curr.right);
+      System.out.println(traversePostOrder(root, new ArrayList<>()));
     }
-    return answer;
-  }
+
+    List<T> traversePostOrder(TreeNode<T> node, List<T> list)
+    {
+      if (node.left != null)
+        traversePostOrder(node.left, list);
+      if (node.right != null)
+        traversePostOrder(node.right, list);
+      list.add(node.value);
+      return list;
+    }
+
+    public void printLevelOrder()
+    {
+      System.out.println(traverseLevelOrder());
+    }
+
+    //level order traversal also known as a bread first solution
+    //this is a more common implentation using a Queue
+    List<T> traverseLevelOrder()
+    {
+      Queue<TreeNode<T>> traverse = new LinkedList<>();
+      List<T> answer = new ArrayList<>();
+      traverse.add(root);
+      while(!traverse.isEmpty())
+      {
+        TreeNode<T> curr = traverse.remove();
+        answer.add(curr.value);
+        if (curr.left != null)
+          traverse.add(curr.left);
+        if (curr.right != null)
+          traverse.add(curr.right);
+      }
+      return answer;
+    }
 }
-
-////////9
-  ///4     20
-  //1 6   15 170
-
-  
- //Depth First Traversals: 
-//(a) Inorder (Left, Root, Right) : 1, 4, 6, 9, 15, 20, 170
-  //intuitively, this should print a binary tree in order
-// (b) Preorder (Root, Left, Right) : 
-  // 9, 4, 1, 6, 20, 15, 170
-// (c) Postorder (Left, Right, Root) : 1 6 4 15 170 20 9
-// Breadth-First or Level Order Traversal: 9, 4, 20, 1, 6, 15, 170
-//can be done with a queue, put the root in the queue
-  //while the queue is not empty, shift from the queue, put the shifted element into the answer list, and it's left and right child into the queue
-
 
 class TreeNode<T extends Comparable<T>>
 {
