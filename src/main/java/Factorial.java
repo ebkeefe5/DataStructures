@@ -1,3 +1,5 @@
+package src.main.java;
+
 //Write two functions that returns the factorial
 //of any number. 
 //one should be recursive and one should just use
