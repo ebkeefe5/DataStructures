@@ -17,7 +17,7 @@ class SortingPlayground
     return list;
   }
 
-  public void bubbleSort(List<Integer> list)
+  public List<Integer> bubbleSort(List<Integer> list)
   {
     for (int i = 0; i < list.size(); i++)
     {
@@ -31,10 +31,10 @@ class SortingPlayground
         }
       }
     }
-    System.out.println(list);
+    return list;
   }
 
-  public void selectionSort(List<Integer> list)
+  public List<Integer> selectionSort(List<Integer> list)
   {
      for (int i = 0; i < list.size(); i++)
     {
@@ -49,11 +49,11 @@ class SortingPlayground
       list.set(minIndex, temp);    
       
     }
-    System.out.println(list);
+    return list;
   }
 
   //implemeneted as bubble sort backwards
-  public void insertionSort(List<Integer> list)
+  public List<Integer> insertionSort(List<Integer> list)
   {
     for (int i = 0; i < list.size(); i++)
     {
@@ -68,7 +68,7 @@ class SortingPlayground
         }   
       }  
     }
-    System.out.println(list);
+    return list;
   }
 
   public List<Integer> mergeSort(List<Integer> list)

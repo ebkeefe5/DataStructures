@@ -1,28 +1,18 @@
+//Time complexity notes
 //O(1) constant no loop
-//O(log N) logorithmetic - usually searching algorithms have log(n) if they are sorted (binary search) 
-//O(n) linear, such as for loops or while loops
-//O(n*log(n)) Log linear, sorting operations usually
-//O(2^n) Exponential-recurisve algorithms that solve a problem
-//of size n
+    //retrieving an item from a list at an index
+//O(log N) logorithmetic -
+    // usually searching algorithms have log(n) if they are sorted (binary search)
+    //searching for a number in a balanced binary search tree
+//O(n) linear
+    //looping over the elements in a list
+    //iterating over all the values in a tree
+//O(n*log(n)) Log linear
+    //sorting operations are often of this time complexity
+//O(2^n) Exponential-recurisve algorithms that solve a problem of size n
+    //we try never to do this
 //O(n!)
+    //we should never do this
 
 //Iterating through half a collection is still O(n)
-//Iterating over two collectsion is O(a + b)
-
-//What can cause time in a function
-//Operations (+  -, *, /)
-//Comparisons (<, >)
-
-//Rule Book
-//Always consider the worst case
-//Remove constants
-//Different inputs should have different variables
-  //example iterating over two different arrays is O(a + b)
-  //iterating over two different arrays in a nexted way is O(a*b)
-//Drop non dominant terms
-
-//What causes space complexity?
-//Variables
-//Data Structures
-//Function Calls
-//Allocations
+//Iterating over two collections is O(a + b)

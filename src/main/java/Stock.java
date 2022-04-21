@@ -4,7 +4,7 @@
 
 //Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
-class Solution {
+class Stock {
     public int maxProfit(int[] prices) {
         //if the list is size 0 return 0
         if (prices.length == 0 || prices.length == 1)
