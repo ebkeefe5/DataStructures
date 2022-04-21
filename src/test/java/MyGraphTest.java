@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class MyGraphTest
 {
     MyGraph<Integer> graph;
@@ -14,8 +16,6 @@ public class MyGraphTest
         graph.addEdge(1, 6);
         graph.addEdge(2, 3);
         graph.addEdge(3, 4);
-        graph.addEdge(4, 5);
-        graph.addEdge(4, 1);
         graph.addEdge(5, 1);
     }
 
@@ -23,7 +23,8 @@ public class MyGraphTest
     public void TestDFSFindsConnectedNodes()
     {
         Assert.assertSame(4, graph.DFS(1, 4));
-        Assert.assertSame(6, graph.DFS(5, 6));
+        Assert.assertSame(6, graph.DFS(1, 6));
+        Assert.assertSame(5, graph.DFS(4, 5));
     }
 
     @Test
@@ -33,10 +34,13 @@ public class MyGraphTest
     }
 
     @Test
-    public void TestBFSFindsConnectedNodes()
+    public void TestBFSFindsShortestPath()
     {
-        Assert.assertSame(4, graph.BFS(1, 4));
-        Assert.assertSame(6, graph.BFS(5, 6));
+        List<Integer> path =  graph.BFS(1, 5);
+        Assert.assertEquals(List.of(5, 1), path);
+
+        List<Integer> path2 =  graph.BFS(1, 4);
+        Assert.assertEquals(List.of(4, 3, 2, 1), path2);
     }
 
     @Test

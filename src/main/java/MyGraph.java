@@ -42,36 +42,64 @@ class MyGraph<T extends Comparable<T>>
     {
       if (!seen.contains(adjNode))
       {
-        return DFS(adjNode, targetNode, seen);
+        T search = DFS(adjNode, targetNode, seen);
+        if (search != null)
+          return  search;
       }
     }   
     return null;
   }
 
-  T BFS(T currNode, T targetNode)
+  List<T> BFS(T currNode, T targetNode)
   {
     return BFS(currNode, targetNode, new HashSet<T>());
   }
 
   //more common BFS implementation using Queue
-  private T BFS(T startNode, T targetNode, Set<T> seen)
+  //this version returns the list of nodes in one of the shortest path from
+  //the start node to the end node if one exists
+  //otherwise it will just return null
+  private List<T> BFS(T startNode, T targetNode, Set<T> seen)
   {
+    HashMap<T, T> backTrackMap = new HashMap<>();
     if (startNode == null)
       return null;
+    seen.add(startNode);
     Queue<T> toTraverse = new LinkedList<>();
     toTraverse.add(startNode);
     while(!toTraverse.isEmpty())
     {
       T curr = toTraverse.poll();
-      if (seen.contains(curr))
-        continue;
       if (curr.equals(targetNode))
-        return curr;
-      seen.add(curr);
+        return getPath(backTrackMap, targetNode, startNode);
       List<T> adjacentNodes = adjacent.get(curr);
-      if (adjacentNodes != null)
-        toTraverse.addAll(adjacentNodes);
+
+      for (T adjacent: adjacentNodes)
+      {
+        if (!seen.contains(adjacent))
+        {
+          seen.add(adjacent);
+          toTraverse.add(adjacent);
+          backTrackMap.put(adjacent, curr);
+        }
+      }
     }
     return null;
+  }
+
+  private List<T> getPath(Map<T, T> backTrackMap, T targetNode, T startNode)
+  {
+    List<T> answer = new ArrayList<>();
+    answer.add(targetNode);
+    T curr = backTrackMap.get(targetNode);
+    while(curr != startNode)
+    {
+      answer.add(curr);
+      curr = backTrackMap.get(curr);
+    }
+    if (startNode != targetNode)
+      answer.add(startNode);
+    return answer;
+
   }
 }
