@@ -1,9 +1,6 @@
 class ReverseString
 {
-  public ReverseString()
-  {
-    
-  }
+  public ReverseString() {}
 
   public String reverse(String s)
   {
