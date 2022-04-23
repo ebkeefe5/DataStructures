@@ -1,8 +1,19 @@
+package Puzzles;
+
 public class ReverseString
 {
   public static String reverseTheString(String input)
   {
     return new StringBuilder(input).reverse().toString();
+  }
+
+  //recursive approach to reversing a String
+  public static String reverse(String input)
+  {
+      if (input.length() <= 1)
+          return input;
+
+      return input.charAt(input.length() - 1) + reverse(input.substring(0, input.length() - 1));
   }
 
   public static String sillyReverseTheString(String input)
