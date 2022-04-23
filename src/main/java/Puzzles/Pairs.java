@@ -1,3 +1,5 @@
+package Puzzles;
+
 public class Pairs{
 
   private static int[] numbers = {1, 2, 3, 4, 5};

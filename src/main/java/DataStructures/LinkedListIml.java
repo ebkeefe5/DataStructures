@@ -1,4 +1,6 @@
-package src.main.java;//prepend (append to beginning) O(1)
+package DataStructures;
+
+//prepend (append to beginning) O(1)
 //append (append to end) O(1)
 //insert O(n) to insert at specific position
 //delete O(n) to delete at a specifc position

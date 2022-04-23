@@ -1,3 +1,5 @@
+package DataStructures;
+
 //first in, last out
 //plates stacked on top of each other
 //lookup O(n) shouldn't be used

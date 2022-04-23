@@ -1,7 +1,4 @@
-//really similar to singularly linked lists
-//just requires a little extra memory and complexity to implement
-//makes it faster to insert and delete if we are doing it towards
-//the end because we can loop backwards
+package DataStructures;
 
 class DoubleLinkedListIml<T>
 {

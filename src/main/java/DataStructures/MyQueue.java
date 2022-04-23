@@ -1,3 +1,5 @@
+package DataStructures;
+
 //first in, first out
 //the first person in, get's to be the first person out
 //visualize like a line

@@ -1,4 +1,4 @@
-package src.main.java;
+package DataStructures;
 
 import java.util.List;
 import java.util.ArrayList;

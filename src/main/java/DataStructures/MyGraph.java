@@ -1,3 +1,5 @@
+package DataStructures;
+
 import java.util.*;
 
 class MyGraph<T extends Comparable<T>>

@@ -1,3 +1,5 @@
+package Puzzles;
+
 class Factorial
 {
   public int factorialL(int num)
