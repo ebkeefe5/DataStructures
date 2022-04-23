@@ -6,11 +6,8 @@ There are a total of numCourses courses you have to take, labeled from 0 to numC
 For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
 Return true if you can finish all courses. Otherwise, return false.
 
-This is an example of a toplogical sort problem
-which can be solved with cycle detection
-
-So in this case this is just a cycle detection problem
-for a graph with directed edges
+This is an example of a cycle detection problem as a valid topological sort exists only if
+there are no cycles in the graph
 
 */
 
@@ -25,12 +22,10 @@ class Courses {
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
-        boolean[] visited = new boolean[numCourses];
-
         ArrayList<Integer>[] courseGraph = new ArrayList[numCourses];
 
         for (int i = 0 ; i < numCourses; i ++)
-            courseGraph[i] = new ArrayList<>();
+        courseGraph[i] = new ArrayList<>();
 
         for (int i = 0; i < prerequisites.length; i++)
         {
