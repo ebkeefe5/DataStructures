@@ -1,5 +1,4 @@
 Module containing implementations of some basic data structures and some hidden algorithms within them
-Interesting things to note:
 * MyGraph contains DFS and BFS implementations
 * BinarySearchTree contains implementations of inOrder, postOrder, preOrder, and levelOrder traversals
 
