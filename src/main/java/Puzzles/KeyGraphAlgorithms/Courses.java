@@ -9,23 +9,22 @@ Return true if you can finish all courses. Otherwise, return false.
 This is an example of a cycle detection problem
 to determine if a valid topological sort exists on the graph
 
-returning the actual toplogical ordering is more complicated
+if we know a toplogical sorting exists we can then find the topological ordering fairly easily
+It would be nice if I could do this all in one step but I am not sure how to at present moment
 
 */
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 class Courses {
 
     Set<Integer> SEEN = new HashSet<>();
 
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
+    public List<Integer> getCourseList(int numCourses, int[][] prerequisites) {
 
         ArrayList<Integer>[] courseGraph = new ArrayList[numCourses];
 
+        //part 1 build course graph
         for (int i = 0 ; i < numCourses; i ++)
         courseGraph[i] = new ArrayList<>();
 
@@ -35,13 +34,30 @@ class Courses {
             courseGraph[prerequisite[1]].add(prerequisite[0]);
         }
 
+        //part 2 detect if there is a cycle, if there is stop early and return an empty list
         for (int i = 0; i < courseGraph.length; i++)
         {
             if (!SEEN.contains(i) && isCyclic(i, courseGraph, new HashSet<>()))
-                return false;
+                throw new IllegalArgumentException("No valid ordering");
         }
 
-        return true;
+        //part 3 if there is no cycle let's find the toplogical sorting using DFS and a stack
+        SEEN.clear();
+        Stack<Integer> courseStack = new Stack<>();
+        for (int i = 0; i < numCourses; i++)
+        {
+            if (!SEEN.contains(i))
+            {
+                toplogicalSortUtil(i, courseGraph, courseStack);
+            }
+        }
+
+        List<Integer> answer = new ArrayList<>();
+        while(!courseStack.isEmpty())
+        {
+            answer.add(courseStack.pop());
+        }
+        return answer;
     }
 
     /*
@@ -71,6 +87,22 @@ class Courses {
         //if we were not optimizing with SEEN we would also need to remove course from visited
 
         return false;
+    }
+
+    //IMPORTANT
+    //this function assumes that the graph has a valid topological sorting
+    private void toplogicalSortUtil(Integer course, List<Integer>[] courseGraph, Stack<Integer> courses)
+    {
+        SEEN.add(course);
+
+        for (Integer followUpCourse: courseGraph[course])
+        {
+            if (!SEEN.contains(followUpCourse))
+                toplogicalSortUtil(followUpCourse, courseGraph, courses);
+        }
+
+        //back tracking out of the current DFS
+        courses.push(course);
     }
  }
  

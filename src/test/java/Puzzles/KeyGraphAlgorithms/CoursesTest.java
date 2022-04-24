@@ -3,6 +3,8 @@ package Puzzles.KeyGraphAlgorithms;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 public class CoursesTest
 {
     private int[][] preRequisites;
@@ -17,10 +19,12 @@ public class CoursesTest
                 {3, 2}
         };
 
-        Assert.assertTrue(courseChecker.canFinish(4, preRequisites));
+        List<Integer> courseList = courseChecker.getCourseList(4, preRequisites);
+
+        Assert.assertEquals(List.of(0, 1, 2, 3), courseList);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void checkCourses_Cycle()
     {
         preRequisites = new int[][]{
@@ -30,7 +34,7 @@ public class CoursesTest
                 {0, 3}
         };
 
-        Assert.assertFalse(courseChecker.canFinish(4, preRequisites));
+       courseChecker.getCourseList(4, preRequisites);
     }
 
     //multiple paths to a vertex from a starting vertex but no cycles
@@ -46,6 +50,8 @@ public class CoursesTest
                 {4, 5}
         };
 
-        Assert.assertTrue(courseChecker.canFinish(6, preRequisites));
+        List<Integer> courseList = courseChecker.getCourseList(6, preRequisites);
+
+        Assert.assertEquals(List.of(5, 4, 3, 2, 1, 0), courseList);
     }
 }
