@@ -24,24 +24,40 @@ public class GraphSearchingUtilTest {
      */
 
     @Test
-    public void testRecursiveDFS()
+    public void testRecursiveDFSNoPath()
     {
         GraphSearchingUtil util = new GraphSearchingUtil();
-        Assert.assertFalse(util.DFS(CNode, ANode, new HashSet<>()));
-        Assert.assertFalse(util.DFS(DNode, BNode, new HashSet<>()));
-        Assert.assertFalse(util.DFS(BNode, DNode, new HashSet<>()));
-        Assert.assertTrue(util.DFS(ANode, CNode, new HashSet<>()));
-        Assert.assertTrue(util.DFS(BNode, CNode, new HashSet<>()));
+        Assert.assertEquals(0, util.DFS(CNode, ANode, new HashSet<>(), new ArrayList<>()).size());
+        Assert.assertEquals(0, util.DFS(DNode, BNode, new HashSet<>(), new ArrayList<>()).size());
+        Assert.assertEquals(0, util.DFS(BNode, DNode, new HashSet<>(), new ArrayList<>()).size());
+    }
+
+    //notice DFS doesn't always find the shortest path, but it does find a path
+    @Test
+    public void testRecursiveDFSPathExists()
+    {
+        List<Integer> path4 = util.DFS(ANode, CNode, new HashSet<>(), new ArrayList<>());
+        Assert.assertEquals(List.of(ANode, DNode, ENode, CNode), path4);
+
+        List<Integer> path5 = util.DFS(BNode, CNode, new HashSet<>(), new ArrayList<>());
+        Assert.assertEquals(List.of(BNode, CNode), path5);
+
+        List<Integer> path6 = util.DFS(ANode, ENode, new HashSet<>(), new ArrayList<>());
+        Assert.assertEquals(List.of(ANode, DNode, ENode), path6);
     }
 
     @Test
-    public void testBFSShortestPathFinder()
+    public void testBFSNoPath()
     {
         Assert.assertEquals(new ArrayList<>(), util.findShortestPath(CNode, ANode));
         Assert.assertEquals(new ArrayList<>(), util.findShortestPath(DNode, BNode));
         Assert.assertEquals(new ArrayList<>(), util.findShortestPath(BNode, DNode));
+    }
 
-        List<Node> shortestPath = util.findShortestPath(ANode, CNode);
+    //BFS always finds the shortest path
+    @Test
+    public void testBFSShortestPathFinder()
+    {
         Assert.assertEquals(3, util.findShortestPath(ANode, CNode).size());
         Assert.assertEquals(3, util.findShortestPath(ANode, ENode).size());
     }

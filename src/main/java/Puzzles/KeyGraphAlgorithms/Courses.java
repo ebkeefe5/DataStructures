@@ -6,8 +6,10 @@ There are a total of numCourses courses you have to take, labeled from 0 to numC
 For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
 Return true if you can finish all courses. Otherwise, return false.
 
-This is an example of a cycle detection problem as a valid topological sort exists only if
-there are no cycles in the graph
+This is an example of a cycle detection problem
+to determine if a valid topological sort exists on the graph
+
+returning the actual toplogical ordering is more complicated
 
 */
 

@@ -14,29 +14,33 @@ public class GraphSearchingUtil<T extends Comparable>
     public GraphSearchingUtil(){};
 
 
-    //basic recursive DFS to determine if a path exists between two nodes in a graph
-    //this is also implemented in the DataStructures module
-    public boolean DFS(Node curr, Node target, Set<Node> seen)
+    public List<Node> DFS(Node curr, Node target, Set<Node> seen, List<Node> path)
     {
         if (curr.value == null)
-            return false;
+            return new ArrayList<>();
 
         if (curr.value.equals(target.value))
-            return true;
+        {
+            path.add(curr);
+            return path;
+        }
 
-        seen.add(curr);
+        path.add(curr);
 
         List<Node> adjacent = curr.adjacent;
         if (adjacent == null)
-            return false;
+            return new ArrayList<>();
 
         for (Node adj: adjacent)
         {
-            if (!seen.contains(adj) && DFS(adj, target, seen))
-                return true;
+            if (!seen.contains(adj) && !DFS(adj, target, seen, path).isEmpty())
+                return path;
         }
 
-        return false;
+        seen.add(curr);
+        path.remove(curr);
+
+        return new ArrayList<>();
     }
 
     public List<Node> findShortestPath(Node start, Node target)
