@@ -1,3 +1,5 @@
+package Puzzles.Warmup;
+
 class Palindrome {
     
     public String longestPalindrome(String s) {

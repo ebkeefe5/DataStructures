@@ -1,4 +1,4 @@
-//find maximal sum of elements in a list
+package Puzzles.Memoization;//find maximal sum of elements in a list
 //but you can only take out elements
 //that are not next to each other
 import java.util.Map;

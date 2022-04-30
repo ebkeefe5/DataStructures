@@ -1,4 +1,4 @@
-package Puzzles;
+package Puzzles.Warmup;
 
 class Factorial
 {

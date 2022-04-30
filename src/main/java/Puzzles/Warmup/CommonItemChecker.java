@@ -1,4 +1,4 @@
-package Puzzles;
+package Puzzles.Warmup;
 
 import java.util.List;
 import java.util.Set;

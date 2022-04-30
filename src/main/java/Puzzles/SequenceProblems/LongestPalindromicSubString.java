@@ -1,3 +1,5 @@
+package Puzzles.SequenceProblems;
+
 class LongestPalindromicSubString {
     
     public String longestPalindrome(String s) {

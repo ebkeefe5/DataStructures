@@ -1,4 +1,4 @@
-package Puzzles;
+package Puzzles.Sorting;
 
 import java.util.List;
 import java.util.Collections;

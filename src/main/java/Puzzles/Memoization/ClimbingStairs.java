@@ -1,4 +1,4 @@
-package Puzzles;
+package Puzzles.Memoization;
 
 import java.util.Map;
 import java.util.HashMap;

@@ -1,4 +1,6 @@
-import java.util.*; 
+package Puzzles.Warmup;
+
+import java.util.*;
 import java.io.*;
 
 class LongestString {

@@ -1,4 +1,4 @@
-package Puzzles;
+package Puzzles.Warmup;
 
 public class ReverseString
 {

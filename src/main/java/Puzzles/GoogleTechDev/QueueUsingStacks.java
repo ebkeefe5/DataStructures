@@ -1,3 +1,5 @@
+package Puzzles.GoogleTechDev;
+
 import java.util.Stack;
 
 //I somehow guess the better solution

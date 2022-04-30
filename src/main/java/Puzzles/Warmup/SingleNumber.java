@@ -1,3 +1,5 @@
+package Puzzles.Warmup;
+
 import java.util.Set;
 import java.util.HashSet;
 
