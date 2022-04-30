@@ -4,3 +4,5 @@
 *.iml
 *.idea
 *target/*
+*src/main/java/Puzzles/TreeProblems/Private*
+*src/test/java/Puzzles/TreeProblems/Private*

@@ -1,4 +1,4 @@
-package Puzzles;
+package Puzzles.Memoization;
 
 import org.junit.Assert;
 import org.junit.Test;

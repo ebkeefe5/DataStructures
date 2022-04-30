@@ -1,11 +1,7 @@
-package Puzzles;
+package Puzzles.Warmup;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ContainsDuplicateTest
 {
